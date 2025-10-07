@@ -1,41 +1,40 @@
-# 🧠 Brain Tumor Detection using MRI Images
+# 🧠 Brain Tumor Classification using CNN
 
-This project aims to **classify MRI brain images** as either containing a tumor or not using **deep learning (Transfer Learning with EfficientNetB0)**.  
-It performs **binary classification** — predicting whether an MRI scan shows the presence of a brain tumor.
+This project implements a **Convolutional Neural Network (CNN)** for **Brain Tumor Classification** from MRI scans.  
+It classifies brain MRI images into **two categories** — `Tumor` and `No Tumor`.
 
 ---
 
-## 📁 Dataset
+## 📘 Dataset
 
-**Dataset:** [Brain MRI Images for Brain Tumor Detection](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection)  
+**Source:** [Brain MRI Images for Brain Tumor Detection](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection)  
 **Author:** Navoneel Chakrabarty  
-**License:** CC0: Public Domain  
-**Source:** Kaggle  
+**License:** Kaggle Dataset (Updated 6 years ago)
 
-### Dataset Details
-- **Classes:** `yes` (tumor) and `no` (no tumor)
-- **Total Images:** ~3,000 MRI scans
-- **Image Type:** Grayscale / RGB MRI images
-- **Task Type:** Binary Classification
-- **Structure:**
+The dataset contains **brain MRI images** labeled as:
+- `yes` — MRI scan contains a brain tumor  
+- `no` — MRI scan does not contain a tumor  
 
-
-
+Each image is preprocessed and resized to a uniform shape before being fed into the model.
 
 ---
 
-## ⚙️ Project Overview
+## ⚙️ Model Overview
 
-| Step | Description |
-|------|--------------|
-| **1. Data Loading & Preprocessing** | Organized dataset into Pandas DataFrame with image paths and labels. |
-| **2. Train-Validation Split** | Used 80% for training, 20% for validation. |
-| **3. Data Augmentation** | Applied rotation, zoom, flip, and rescale using `ImageDataGenerator`. |
-| **4. Transfer Learning Model** | Based on **EfficientNetB0** pre-trained on ImageNet. |
-| **5. Fine-Tuning** | Unfroze top 50 layers for domain-specific learning. |
-| **6. Evaluation** | Used validation accuracy, loss curves, confusion matrix, and Grad-CAM visualization. |
+The project uses a **custom CNN architecture** built from scratch using TensorFlow and Keras.  
+The network consists of:
 
----
+- **Convolutional Layers** — to extract spatial and edge features  
+- **MaxPooling Layers** — to downsample and retain important features  
+- **Dropout Layers** — to reduce overfitting  
+- **Fully Connected Dense Layers** — for binary classification (`Tumor` / `No Tumor`)  
+
+The model was trained on an NVIDIA **Tesla P100 GPU (16 GB)** with **XLA optimization** enabled.
+
+**Class Weights Used:**
+```python
+{'no': 0.979, 'yes': 1.021}
+
 
 ## 🧩 Model Architecture
 
@@ -51,14 +50,7 @@ It performs **binary classification** — predicting whether an MRI scan shows t
 
 ---
 
-## 🧠 Training Summary
 
-| Phase | Epochs | Train Acc | Val Acc | Val Loss |
-|-------|---------|------------|----------|-----------|
-| Initial Training | 20 | ~0.91 | ~0.86 | 0.31 |
-| Fine-tuning | 20 | ~0.95 | ~0.91 | 0.24 |
-
----
 
 ## 📈 Results & Visualization
 
@@ -66,7 +58,7 @@ It performs **binary classification** — predicting whether an MRI scan shows t
 
 These plots show training vs validation accuracy and loss over epochs.
 
-![Accuracy and Loss Curves](results/accuracy_loss.png)
+![Accuracy and Loss Curves](AccuracyLoss.png)
 
 - Training accuracy gradually improved to **~94%**
 - Validation accuracy stabilized around **~91%**
@@ -77,6 +69,7 @@ These plots show training vs validation accuracy and loss over epochs.
 ### **2. Confusion Matrix**
 
 Displays the number of correctly and incorrectly classified MRI scans.
+![Confusion Matrix](ConfusionMatrix.png)
 
 | Metric | Value |
 |---------|--------|
@@ -93,12 +86,7 @@ Model correctly classifies most tumor and non-tumor images.
 Grad-CAM visualizations highlight **tumor regions** the model focuses on when making predictions.
 
 #### 🔥 Original + Heatmap Overlay
-| MRI Image | Grad-CAM Heatmap | Predicted Tumor Probability |
-|------------|------------------|-----------------------------|
-| Image 1 | Overlay Heatmap | 0.65 |
-| Image 2 | Overlay Heatmap | 0.07 |
-| Image 3 | Overlay Heatmap | 0.76 |
-| Image 4 | Overlay Heatmap | 0.98 |
+![Original,Heatmap,Oerlay](Prediction.png)
 
 These show that the model accurately identifies tumor areas with **high confidence**.
 
