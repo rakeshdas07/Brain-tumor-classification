@@ -31,10 +31,6 @@ The network consists of:
 
 The model was trained on an NVIDIA **Tesla P100 GPU (16 GB)** with **XLA optimization** enabled.
 
-**Class Weights Used:**
-```python
-{'no': 0.979, 'yes': 1.021}
-
 
 ## 🧩 Model Architecture
 
