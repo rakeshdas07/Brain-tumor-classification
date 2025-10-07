@@ -56,8 +56,8 @@ These plots show training vs validation accuracy and loss over epochs.
 
 ![Accuracy and Loss Curves](AccuracyLoss.png)
 
-- Training accuracy gradually improved to **~94%**
-- Validation accuracy stabilized around **~91%**
+- Training accuracy gradually improved to **~90%**
+- Validation accuracy stabilized around **~89%**
 - Both training and validation loss decreased steadily
 
 ---
@@ -67,13 +67,6 @@ These plots show training vs validation accuracy and loss over epochs.
 Displays the number of correctly and incorrectly classified MRI scans.
 
 ![Confusion Matrix](confusionMatrix.png)
-
-
-| Metric | Value |
-|---------|--------|
-| Precision | High (~0.90+) |
-| Recall | High (~0.88+) |
-| F1-score | ~0.89 |
 
 Model correctly classifies most tumor and non-tumor images.
 
@@ -128,7 +121,7 @@ You can run the entire notebook directly on **Kaggle**:
 This project demonstrates how **transfer learning** can be effectively used for **medical image classification** with limited data.  
 The model achieves high accuracy and provides **interpretable Grad-CAM heatmaps** that align with tumor regions in MRI scans.
 
-> ✅ **Final Model Accuracy:** ~91–92% (Validation)  
+> ✅ **Final Model Accuracy:** ~89-90% (Validation)  
 > ✅ **Task:** Binary Brain Tumor Classification  
 > ✅ **Framework:** TensorFlow / Keras  
 
