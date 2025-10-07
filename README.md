@@ -65,7 +65,9 @@ These plots show training vs validation accuracy and loss over epochs.
 ### **2. Confusion Matrix**
 
 Displays the number of correctly and incorrectly classified MRI scans.
+
 ![Confusion Matrix](confusionMatrix.png)
+
 
 | Metric | Value |
 |---------|--------|
